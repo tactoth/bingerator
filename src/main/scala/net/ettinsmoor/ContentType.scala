@@ -21,8 +21,8 @@ object ContentType {
 
   def get(ct_str: String) = ct_str match {
     case gif if matches(gif, patternGif) => ImageGIF
-    case jpeg if matches(jpeg, patternGif) => ImageJPEG
-    case png if matches(png, patternGif) => ImagePNG
+    case jpeg if matches(jpeg, patternJpeg) => ImageJPEG
+    case png if matches(png, patternPng) => ImagePNG
     case _ => ImageOther(ct_str)
   }
 }
