@@ -1,6 +1,7 @@
 name := "Bingerator"
 
-version := "0.2.4"
+// Use a very high version code to avoid confliction - Wei
+version := "10.2.4"
 
 scalaVersion := "2.11.7"
 
@@ -10,7 +11,7 @@ exportJars := true
 crossScalaVersions := Seq("2.10.6", "2.11.7")
 
 // DEPENDENCIES
-libraryDependencies += "org.scalatest" %%  "scalatest" % "2.2.4" % "test"
+libraryDependencies += "org.scalatest" %% "scalatest" % "2.2.4" % "test"
 
 // add scala-xml if scala major version >= 11
 libraryDependencies := {
@@ -45,7 +46,7 @@ publishTo := {
   if (isSnapshot.value)
     Some("snapshots" at nexus + "content/repositories/snapshots")
   else
-    Some("releases"  at nexus + "service/local/staging/deploy/maven2")
+    Some("releases" at nexus + "service/local/staging/deploy/maven2")
 }
 
 publishArtifact in Test := false
@@ -55,10 +56,10 @@ pomExtra := (
     <url>scm:git:git@github.com:dbarowy/bingerator.git</url>
     <connection>scm:git:git@github.com:dbarowy/bingerator.git</connection>
   </scm>
-  <developers>
-    <developer>
-      <id>dbarowy</id>
-      <name>Daniel Barowy</name>
-      <url>http://people.cs.umass.edu/~dbarowy</url>
-    </developer>
-  </developers>)
+    <developers>
+      <developer>
+        <id>dbarowy</id>
+        <name>Daniel Barowy</name>
+        <url>http://people.cs.umass.edu/~dbarowy</url>
+      </developer>
+    </developers>)

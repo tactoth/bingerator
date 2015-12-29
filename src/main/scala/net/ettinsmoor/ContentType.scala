@@ -1,19 +1,28 @@
 package net.ettinsmoor
 
+import java.util.regex.Pattern
+
 abstract class ContentType
+
 case class ImageJPEG() extends ContentType
+
 case class ImagePNG() extends ContentType
+
 case class ImageGIF() extends ContentType
 
+case class ImageOther(mimeType: String) extends ContentType
+
 object ContentType {
-  def isGIF(ct_str: String) = ct_str.matches("^image/(animated)?gif$")
-  def isJPEG(ct_str: String) = ct_str.matches("^image/jpe?g$")
-  def isPNG(ct_str: String) = ct_str.matches("^image/png$")
+  val patternGif = Pattern.compile("^image/(animated)?gif$")
+  val patternJpeg = Pattern.compile("^image/jpe?g$")
+  val patternPng = Pattern.compile("^image/png$")
+
+  def matches(str: String, pattern: Pattern) = pattern.matcher(str).matches()
 
   def get(ct_str: String) = ct_str match {
-    case gif if isGIF(gif) => ImageGIF
-    case jpeg if isJPEG(jpeg) => ImageJPEG
-    case png if isPNG(png) => ImagePNG
-    case _ => throw new NotImplementedError("Unknown content type: " + ct_str)
+    case gif if matches(gif, patternGif) => ImageGIF
+    case jpeg if matches(jpeg, patternGif) => ImageJPEG
+    case png if matches(png, patternGif) => ImagePNG
+    case _ => ImageOther(ct_str)
   }
 }

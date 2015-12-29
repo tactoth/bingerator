@@ -28,12 +28,12 @@ case class ImageResult(result_xml: Node) extends SearchResult {
   val height = (result_xml \ "content" \ "properties" \ "Height").text.toInt
   val width = (result_xml \ "content" \ "properties" \ "Width").text.toInt
 
-  private lazy val _imagedata : Option[BufferedImage] = 
+  private lazy val _imagedata : Option[BufferedImage] =
     try {
       Some(ImageIO.read(new URL(media_url)))
     } catch {
       case _:java.io.IOException => None
-    } 
+    }
 
   def getImage : Option[BufferedImage] = {
     _imagedata
